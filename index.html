@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wagih Elbeih | Sports Scientist</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.5);
+            --whatsapp: #25D366;
+            --whatsapp-glow: rgba(37, 211, 102, 0.5);
+            --font-latin: 'Montserrat', sans-serif;
+            --font-arabic: 'Cairo', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-latin);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* --- RTL & ARABIC SUPPORT --- */
+        html[lang="ar"] body {
+            font-family: var(--font-arabic);
+            direction: rtl;
+            text-align: right;
+        }
+
+        html[lang="ar"] .skill-tag { margin: 5px 0 5px 5px; }
+        html[lang="ar"] ul { padding-right: 20px; padding-left: 0; }
+        html[lang="ar"] th { text-align: right; }
+
+        /* --- LANGUAGE SWITCHER --- */
+        .lang-switch-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+        
+        html[lang="ar"] .lang-switch-container { right: auto; left: 20px; }
+
+        .lang-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            font-family: var(--font-latin);
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-color);
+            font-weight: bold;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3, h4 { line-height: 1.2; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        img { max-width: 100%; height: auto; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal { opacity: 0; animation: fadeIn 1s ease-out forwards; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* --- HERO --- */
+        header {
+            min-height: 100vh;
+            padding: 100px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 70%);
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        html[lang="ar"] .hero-content h1 { letter-spacing: 0; }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .feature-img {
+            max-width: 300px;
+            width: 80%;
+            border-radius: 50%;
+            border: 4px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            margin: 0 auto 40px auto;
+            display: block;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+        }
+        
+        /* DOCUMENT IMAGES STYLING */
+        .doc-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 10px;
+            margin-top: 15px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .doc-img:hover {
+            transform: scale(1.03);
+        }
+
+        /* BUTTONS CONTAINER */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* STANDARD BUTTON */
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 40px;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .cta-btn:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+            box-shadow: 0 0 30px var(--accent-glow);
+            transform: scale(1.05);
+        }
+
+        /* WHATSAPP BUTTON */
+        .whatsapp-btn {
+            border-color: var(--whatsapp);
+            color: var(--whatsapp);
+            box-shadow: 0 0 15px var(--whatsapp-glow);
+            gap: 10px;
+        }
+
+        .whatsapp-btn:hover {
+            background: var(--whatsapp);
+            color: var(--bg-color);
+            box-shadow: 0 0 30px var(--whatsapp-glow);
+            transform: scale(1.05);
+        }
+
+        .whatsapp-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* --- SECTIONS --- */
+        section { padding: 80px 0; }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        html[lang="ar"] .section-title::after { left: auto; right: 0; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-color: var(--accent);
+        }
+
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
+        .card .subtitle { color: var(--accent); font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; display: block; }
+
+        .skill-tag {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px 5px 5px 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* --- STATS TABLES --- */
+        .stats-container {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            overflow-x: auto;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 30px;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .stats-table th, .stats-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .stats-table th {
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .stats-table td {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        .stats-table tr:last-child td { border-bottom: none; }
+        
+        .highlight-row { background: rgba(56, 189, 248, 0.05); }
+        .badge-gold { color: #fbbf24; font-weight: bold; }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            background: #020617;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { font-size: 1.1rem; }
+            .lang-switch-container { width: 100%; justify-content: center; top: 10px; right: 0; left: 0;}
+            .btn-container { flex-direction: column; align-items: center; }
+            .cta-btn, .whatsapp-btn { width: 100%; max-width: 280px; }
+            .feature-img { max-width: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-switch-container">
+        <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="setLanguage('de')">DE</button>
+        <button class="lang-btn" onclick="setLanguage('ar')">مصري</button>
+    </div>
+
+    <header>
+        <div class="container hero-content">
+            <h1 class="reveal" data-i18n="name">Wagih Elbeih</h1>
+            <p class="reveal delay-1" data-i18n="tagline">Sports Scientist | Performance Analyst | Biomechanics</p>
+            
+            <img src="https://i.ibb.co/svk5mFKw/Whats-App-Image-2025-12-28-at-19-47-53.jpg" alt="Wagih Elbeih" class="feature-img reveal delay-2">
+            
+            <div class="btn-container reveal delay-3">
+                <a href="https://wa.me/436601015076" class="cta-btn whatsapp-btn" target="_blank">
+                    <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                    WhatsApp
+                </a>
+                <a href="mailto:email@example.com" class="cta-btn" data-i18n="contact_btn">Contact Me</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title reveal" data-i18n="about_title">About Me</h2>
+            <div class="card reveal delay-1">
+                <p style="color: var(--text-secondary); font-size: 1.1rem;" data-i18n="about_text">
+                    Dedicated Sports Science graduate with a passion for optimizing human performance through data-driven strategies. I combine academic knowledge in physiology and biomechanics with practical application to help athletes reach their peak potential.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="stats">
+        <div class="container">
+            <h2 class="section-title reveal" data-i18n="stats_title">Coaching Record</h2>
+            <h3 class="reveal delay-1" style="margin-bottom: 20px; color:#fff;" data-i18n="licenses_title">Licenses</h3>
+            <div class="stats-container reveal delay-1" id="licenses-table-container"></div>
+            <h3 class="reveal delay-2" style="margin-bottom: 20px; color:#fff;" data-i18n="history_title">Club History</h3>
+            <div class="stats-container reveal delay-2" id="history-table-container"></div>
+            <h3 class="reveal delay-3" style="margin-bottom: 20px; color:#fff;" data-i18n="success_title">Achievements</h3>
+            <div class="stats-container reveal delay-3" id="success-table-container"></div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title reveal" data-i18n="exp_title">Experience</h2>
+            <div class="grid">
+                <div class="card reveal delay-1">
+                    <span class="subtitle" data-i18n="job1_date">2017 - 2020</span>
+                    <h3 data-i18n="job1_title">Head Coach & Co-Trainer</h3>
+                    <p style="color: var(--text-secondary);" data-i18n="job1_company">ESK Graz</p>
+                    <ul style="margin-top: 15px; margin-left: 20px; color: var(--text-secondary);">
+                        <li data-i18n="job1_desc1">Champion (Meister) with U13 C squad (2016/17).</li>
+                        <li data-i18n="job1_desc2">Managed U15 squads securing multiple top 5 finishes.</li>
+                    </ul>
+                </div>
+                <div class="card reveal delay-2">
+                    <span class="subtitle" data-i18n="job2_date">05.2014 - 03.2019</span>
+                    <h3 data-i18n="job2_title">Sports Supervisor & Youth Leader</h3>
+                    <p style="color: var(--text-secondary);" data-i18n="job2_company">Association for Interculturality, Graz</p>
+                    <ul style="margin-top: 15px; margin-left: 20px; color: var(--text-secondary);">
+                        <li data-i18n="job2_desc1">Organized and led sports activities for youth groups.</li>
+                        <li data-i18n="job2_desc2">Fostered team building and intercultural exchange through sport.</li>
+                    </ul>
+                </div>
+                 <div class="card reveal delay-3">
+                    <span class="subtitle" data-i18n="job3_date">1986 - 1991</span>
+                    <h3 data-i18n="job3_title">Sports Teacher & Soccer Coach</h3>
+                    <p style="color: var(--text-secondary);" data-i18n="job3_company">Vocational School, Suez, Egypt</p>
+                    <ul style="margin-top: 15px; margin-left: 20px; color: var(--text-secondary);">
+                        <li data-i18n="job3_desc1">Delivered physical education curriculum to students.</li>
+                        <li data-i18n="job3_desc2">Coached school soccer teams and managed training sessions.</li>
+                    </ul>
+                </div>
+                <div class="card reveal delay-3">
+                    <span class="subtitle" data-i18n="job4_date">2008</span>
+                    <h3 data-i18n="job4_title">Assistant Coach</h3>
+                    <p style="color: var(--text-secondary);" data-i18n="job4_company">FK Austria ASV Puch</p>
+                    <ul style="margin-top: 15px; margin-left: 20px; color: var(--text-secondary);">
+                        <li data-i18n="job4_desc1">Assisted in tactical development for U15 squad.</li>
+                        <li data-i18n="job4_desc2">Early career focus on youth performance development.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title reveal" data-i18n="edu_title">Education</h2>
+            <div class="card reveal delay-1">
+                <span class="subtitle" data-i18n="edu1_date">2014 (Recognition)</span>
+                <h3 data-i18n="degree">Bachelor of Sports Science</h3>
+                <p style="color: var(--text-secondary);" data-i18n="university">Official Austrian Recognition (ENIC NARIC)</p>
+                <br>
+                <p style="color: var(--text-secondary);" data-i18n="edu_desc">
+                    <strong>Based on:</strong> Study of Sports Science at Cairo University (1981-1986) and Zagazig University.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="docs">
+        <div class="container">
+            <h2 class="section-title reveal" data-i18n="docs_title">Credentials & Verification</h2>
+            <div class="grid">
+                <div class="card reveal delay-1">
+                    <h3 style="margin-bottom: 5px;" data-i18n="doc_diploma_title">Degree Certificate</h3>
+                    <span class="subtitle">ENIC NARIC Austria</span>
+                    <a href="https://i.ibb.co/Kxvkczq1/Unbenannt.jpg" target="_blank">
+                        <img src="https://i.ibb.co/Kxvkczq1/Unbenannt.jpg" alt="Diploma" class="doc-img">
+                    </a>
+                </div>
+
+                <div class="card reveal delay-2">
+                    <h3 style="margin-bottom: 5px;" data-i18n="doc_cv_title">Professional History</h3>
+                    <span class="subtitle">Original Record</span>
+                    <a href="https://i.ibb.co/FkcRx70B/Unbenanntdawda.jpg" target="_blank">
+                        <img src="https://i.ibb.co/FkcRx70B/Unbenanntdawda.jpg" alt="CV Scan" class="doc-img">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title reveal" data-i18n="skills_title">Core Competencies</h2>
+            <div class="card reveal delay-1">
+                <div style="margin-bottom: 20px;">
+                    <h4 style="margin-bottom:10px; color:#fff;" data-i18n="tech_skills_title">Technical Skills</h4>
+                    <span class="skill-tag" data-i18n="skill1">Biomechanics Analysis</span>
+                    <span class="skill-tag" data-i18n="skill2">Physiological Testing</span>
+                    <span class="skill-tag" data-i18n="skill3">Data Analytics</span>
+                    <span class="skill-tag" data-i18n="skill4">Strength & Conditioning</span>
+                </div>
+                <div>
+                    <h4 style="margin-bottom:10px; color:#fff;" data-i18n="soft_skills_title">Soft Skills</h4>
+                    <span class="skill-tag" data-i18n="soft1">Leadership</span>
+                    <span class="skill-tag" data-i18n="soft2">Communication</span>
+                    <span class="skill-tag" data-i18n="soft3">Teamwork</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h2 style="color: #fff; margin-bottom: 20px;" data-i18n="footer_title">Let's Work Together</h2>
+            <a href="mailto:email@example.com" style="color: var(--accent); font-weight: bold;">email@example.com</a>
+            <br><br>
+            <p style="font-size: 0.8rem;">&copy; 2025 Wagih Elbeih</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- TRANSLATIONS DATA ---
+        const translations = {
+            en: {
+                name: "Wagih Elbeih",
+                tagline: "Sports Scientist | Performance Analyst | Biomechanics",
+                contact_btn: "Contact Me",
+                about_title: "About Me",
+                about_text: "Dedicated Sports Science graduate with a passion for optimizing human performance through data-driven strategies. I combine academic knowledge in physiology and biomechanics with practical application to help athletes reach their peak potential.",
+                edu_title: "Education",
+                edu1_date: "2014 (Recognition)",
+                degree: "Bachelor of Sports Science",
+                university: "Official Austrian Recognition (ENIC NARIC)",
+                edu_desc: "<strong>Based on:</strong> Study of Sports Science at Cairo University (1981-1986) and Zagazig University.",
+                exp_title: "Experience",
+                job1_date: "2017 - 2020",
+                job1_title: "Head Coach & Assistant Coach",
+                job1_company: "ESK Graz",
+                job1_desc1: "Champion (Meister) with U13 C squad (2016/17).",
+                job1_desc2: "Managed U15 squads securing multiple top 5 finishes.",
+                job2_date: "05.2014 - 03.2019",
+                job2_title: "Sports Supervisor & Youth Leader",
+                job2_company: "Association for Interculturality, Graz",
+                job2_desc1: "Organized and led sports activities for youth groups.",
+                job2_desc2: "Fostered team building and intercultural exchange through sport.",
+                job3_date: "1986 - 1991",
+                job3_title: "Sports Teacher & Soccer Coach",
+                job3_company: "Vocational School, Suez, Egypt",
+                job3_desc1: "Delivered physical education curriculum to students.",
+                job3_desc2: "Coached school soccer teams and managed training sessions.",
+                job4_date: "2008",
+                job4_title: "Assistant Coach",
+                job4_company: "FK Austria ASV Puch",
+                job4_desc1: "Assisted in tactical development for U15 squad.",
+                job4_desc2: "Early career focus on youth performance development.",
+                skills_title: "Core Competencies",
+                tech_skills_title: "Technical Skills",
+                skill1: "Biomechanics Analysis",
+                skill2: "Physiological Testing",
+                skill3: "Data Analytics",
+                skill4: "Strength & Conditioning",
+                soft_skills_title: "Soft Skills",
+                soft1: "Leadership",
+                soft2: "Communication",
+                soft3: "Teamwork",
+                footer_title: "Let's Work Together",
+                stats_title: "Coaching Record",
+                licenses_title: "Licenses",
+                history_title: "Club History",
+                success_title: "Achievements",
+                
+                // NEW SECTION TRANSLATIONS
+                docs_title: "Credentials & Verification",
+                doc_diploma_title: "Degree Certificate",
+                doc_cv_title: "Professional History",
+
+                licenses_html: `
+                    <table class="stats-table">
+                        <tr><th>Season</th><th>License</th><th>Valid From</th></tr>
+                        <tr><td>2001/02</td><td>ÖFB-D-License</td><td>07.12.2001</td></tr>
+                    </table>`,
+                history_html: `
+                    <table class="stats-table">
+                        <tr><th>Club</th><th>Role</th><th>Period</th></tr>
+                        <tr class="highlight-row"><td>ESK Graz</td><td>Head Coach</td><td>23.04.2017 - 09.02.2018</td></tr>
+                        <tr><td>ESK Graz</td><td>Assistant Coach</td><td>23.04.2017 - 30.06.2020</td></tr>
+                        <tr><td>Fk Austria Asv Puch</td><td>Assistant Coach</td><td>15.04.2008 - 30.06.2008</td></tr>
+                    </table>`,
+                success_html: `
+                    <table class="stats-table">
+                        <tr><th>Season</th><th>Target / Achievement</th><th>Club</th></tr>
+                        <tr class="highlight-row"><td>2016/17</td><td><span class="badge-gold">Champion</span> Graz/West U13 C</td><td>ESK Graz</td></tr>
+                        <tr><td>2017/18</td><td>5th Place Graz U15 A</td><td>ESK Graz</td></tr>
+                        <tr><td>2017/18</td><td>5th Place Graz U15 B</td><td>ESK Graz</td></tr>
+                        <tr><td>2017/18</td><td>7th Place Graz U15 B</td><td>ESK Graz</td></tr>
+                        <tr><td>2007/08</td><td>11th Place Graz U15 B</td><td>Fk Austria Asv Puch</td></tr>
+                    </table>`
+            },
+            de: {
+                name: "Wagih Elbeih",
+                tagline: "Sportwissenschaftler | Leistungsanalytiker | Biomechanik",
+                contact_btn: "Kontaktieren",
+                about_title: "Über Mich",
+                about_text: "Engagierter Absolvent der Sportwissenschaften mit einer Leidenschaft für die Optimierung der menschlichen Leistung durch datengestützte Strategien.",
+                edu_title: "Ausbildung",
+                edu1_date: "2014 (Anerkennung)",
+                degree: "Bachelor Sportwissenschaft",
+                university: "Offizielle Anerkennung in Österreich (ENIC NARIC)",
+                edu_desc: "<strong>Basierend auf:</strong> Studium der Sportwissenschaften an der Universität Kairo (1981-1986) und der Universität Zagazig.",
+                exp_title: "Erfahrung",
+                job1_date: "2017 - 2020",
+                job1_title: "Trainer & Co-Trainer",
+                job1_company: "ESK Graz",
+                job1_desc1: "Meistertitel mit U13 C Mannschaft (2016/17).",
+                job1_desc2: "Leitung der U15-Kader mit mehreren Top-5-Platzierungen.",
+                job2_date: "05.2014 - 03.2019",
+                job2_title: "Sportbetreuer & Jugendleiter",
+                job2_company: "Verein für Interkulturalität, Graz",
+                job2_desc1: "Organisation und Leitung von Sportaktivitäten für Jugendgruppen.",
+                job2_desc2: "Förderung von Teambuilding und interkulturellem Austausch durch Sport.",
+                job3_date: "1986 - 1991",
+                job3_title: "Sportlehrer & Fußballtrainer",
+                job3_company: "Berufsschule Suez, Ägypten",
+                job3_desc1: "Unterricht im Fach Sport und körperliche Erziehung.",
+                job3_desc2: "Training der Schulfußballmannschaften und Leitung von Trainingseinheiten.",
+                job4_date: "2008",
+                job4_title: "Co-Trainer",
+                job4_company: "FK Austria ASV Puch",
+                job4_desc1: "Unterstützung bei der taktischen Entwicklung der U15.",
+                job4_desc2: "Früher Karrierefokus auf Jugendleistung.",
+                skills_title: "Kompetenzen",
+                tech_skills_title: "Technische Fähigkeiten",
+                skill1: "Biomechanik-Analyse",
+                skill2: "Physiologische Tests",
+                skill3: "Datenanalyse",
+                skill4: "Kraft & Kondition",
+                soft_skills_title: "Soft Skills",
+                soft1: "Führung",
+                soft2: "Kommunikation",
+                soft3: "Teamarbeit",
+                footer_title: "Lass uns zusammenarbeiten",
+                stats_title: "Trainerprofil",
+                licenses_title: "Ausbildungen",
+                history_title: "Vereinsgeschichte",
+                success_title: "Erfolge",
+                
+                // NEW SECTION TRANSLATIONS
+                docs_title: "Zertifikate & Nachweise",
+                doc_diploma_title: "Diplom-Anerkennung",
+                doc_cv_title: "Historischer Beleg",
+
+                licenses_html: `
+                    <table class="stats-table">
+                        <tr><th>Saison</th><th>Ausbildung</th><th>Gültig von</th></tr>
+                        <tr><td>2001/02</td><td>ÖFB-D-Lizenz</td><td>07.12.2001</td></tr>
+                    </table>`,
+                history_html: `
+                    <table class="stats-table">
+                        <tr><th>Verein</th><th>Funktion</th><th>Von - Bis</th></tr>
+                        <tr class="highlight-row"><td>ESK Graz</td><td>Trainer</td><td>23.04.2017 - 09.02.2018</td></tr>
+                        <tr><td>ESK Graz</td><td>Co-Trainer</td><td>23.04.2017 - 30.06.2020</td></tr>
+                        <tr><td>Fk Austria Asv Puch</td><td>Co-Trainer</td><td>15.04.2008 - 30.06.2008</td></tr>
+                    </table>`,
+                success_html: `
+                    <table class="stats-table">
+                        <tr><th>Saison</th><th>Ziel / Erfolg</th><th>Verein</th></tr>
+                        <tr class="highlight-row"><td>2016/17</td><td><span class="badge-gold">Meister</span> Gebiet Graz/West U13 C</td><td>ESK Graz</td></tr>
+                        <tr><td>2017/18</td><td>5. Platz Gebiet Graz U15 A</td><td>ESK Graz</td></tr>
+                        <tr><td>2017/18</td><td>5. Platz Gebiet Graz U15 B</td><td>ESK Graz</td></tr>
+                        <tr><td>2017/18</td><td>7. Platz Gebiet Graz U15 B</td><td>ESK Graz</td></tr>
+                        <tr><td>2007/08</td><td>11. Platz Gebiet Graz U15 B</td><td>Fk Austria Asv Puch</td></tr>
+                    </table>`
+            },
+            ar: {
+                name: "وجيه البيه",
+                tagline: "أخصائي علوم رياضة | محلل أداء | بايو ميكانيكس",
+                contact_btn: "تواصل معايا",
+                about_title: "نبذة عني",
+                about_text: "خريج علوم رياضة، وشغفي كله إني أحسن الأداء البدني بالداتا والعلم. بدمج دراستي في الفسيولوجي والبايو ميكانيكس مع الشغل العملي عشان أوصل بالرياضيين لأعلى مستوى.",
+                edu_title: "دراستي",
+                edu1_date: "2014 (اعتماد الشهادة)",
+                degree: "بكالوريوس علوم الرياضة",
+                university: "اعتماد رسمي في النمسا (ENIC NARIC)",
+                edu_desc: "<strong>بناءً على:</strong> دراسة علوم الرياضة في جامعة القاهرة (1981-1986) وجامعة الزقازيق.",
+                exp_title: "خبرتي",
+                job1_date: "2017 - 2020",
+                job1_title: "مدير فني ومدرب مساعد",
+                job1_company: "ESK Graz",
+                job1_desc1: "حققنا بطولة الدوري (Meister) مع فريق U13 C (موسم 2016/17).",
+                job1_desc2: "وصلت بفريق U15 للمراكز الخمسة الأولى أكتر من مرة.",
+                job2_date: "05.2014 - 03.2019",
+                job2_title: "مشرف رياضي وقائد شباب",
+                job2_company: "جمعية التبادل الثقافي، غراتس",
+                job2_desc1: "تنظيم وقيادة الأنشطة الرياضية لمجموعات الشباب.",
+                job2_desc2: "تعزيز روح الفريق والتبادل الثقافي من خلال الرياضة.",
+                job3_date: "1986 - 1991",
+                job3_title: "مدرس تربية رياضية ومدرب كرة قدم",
+                job3_company: "مدرسة مهنية، السويس، مصر",
+                job3_desc1: "تدريس منهج التربية الرياضية للطلاب.",
+                job3_desc2: "تدريب فرق كرة القدم المدرسية وإدارة الحصص التدريبية.",
+                job4_date: "2008",
+                job4_title: "مدرب مساعد",
+                job4_company: "FK Austria ASV Puch",
+                job4_desc1: "شاركت في تطوير الجانب التكتيكي لفريق U15.",
+                job4_desc2: "بداية مسيرتي في التدريب مع التركيز على الناشئين.",
+                skills_title: "مهاراتي",
+                tech_skills_title: "المهارات الفنية",
+                skill1: "تحليل بايو ميكانيكس",
+                skill2: "اختبارات فسيولوجية",
+                skill3: "تحليل داتا",
+                skill4: "قوة وتكييف بدني",
+                soft_skills_title: "مهارات شخصية",
+                soft1: "قيادة",
+                soft2: "تواصل فعال",
+                soft3: "شغل التيم",
+                footer_title: "يلا نشتغل سوا",
+                stats_title: "سجل التدريب",
+                licenses_title: "الرخص والدراسات",
+                history_title: "الأندية",
+                success_title: "الإنجازات",
+                
+                // NEW SECTION TRANSLATIONS
+                docs_title: "الشهادات والوثائق",
+                doc_diploma_title: "شهادة المعادلة",
+                doc_cv_title: "السجل الوظيفي",
+
+                licenses_html: `
+                    <table class="stats-table">
+                        <tr><th>الموسم</th><th>الرخصة</th><th>تاريخ الحصول عليها</th></tr>
+                        <tr><td>2001/02</td><td>رخصة ÖFB-D (النمسا)</td><td>07.12.2001</td></tr>
+                    </table>`,
+                history_html: `
+                    <table class="stats-table">
+                        <tr><th>النادي</th><th>الدور</th><th>الفترة</th></tr>
+                        <tr class="highlight-row"><td>ESK Graz</td><td>مدير فني (Head Coach)</td><td>23.04.2017 - 09.02.2018</td></tr>
+                        <tr><td>ESK Graz</td><td>مدرب مساعد</td><td>23.04.2017 - 30.06.2020</td></tr>
+                        <tr><td>Fk Austria Asv Puch</td><td>مدرب مساعد</td><td>15.04.2008 - 30.06.2008</td></tr>
+                    </table>`,
+                success_html: `
+                    <table class="stats-table">
+                        <tr><th>الموسم</th><th>الإنجاز</th><th>النادي</th></tr>
+                        <tr class="highlight-row"><td>2016/17</td><td><span class="badge-gold">بطل الدوري</span> (U13 C)</td><td>ESK Graz</td></tr>
+                        <tr><td>2017/18</td><td>المركز الخامس (U15 A)</td><td>ESK Graz</td></tr>
+                        <tr><td>2017/18</td><td>المركز الخامس (U15 B)</td><td>ESK Graz</td></tr>
+                        <tr><td>2017/18</td><td>المركز السابع (U15 B)</td><td>ESK Graz</td></tr>
+                        <tr><td>2007/08</td><td>المركز الـ 11 (U15 B)</td><td>Fk Austria Asv Puch</td></tr>
+                    </table>`
+            }
+        };
+
+        // --- CHANGE LANGUAGE FUNCTION ---
+        function setLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            if (translations[lang]['licenses_html']) {
+                document.getElementById('licenses-table-container').innerHTML = translations[lang]['licenses_html'];
+                document.getElementById('history-table-container').innerHTML = translations[lang]['history_html'];
+                document.getElementById('success-table-container').innerHTML = translations[lang]['success_html'];
+            }
+
+            const htmlTag = document.documentElement;
+            if (lang === 'ar') {
+                htmlTag.setAttribute('lang', 'ar');
+                htmlTag.setAttribute('dir', 'rtl');
+            } else {
+                htmlTag.setAttribute('lang', lang);
+                htmlTag.setAttribute('dir', 'ltr');
+            }
+
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const btnText = lang === 'ar' ? 'مصري' : lang.toUpperCase();
+            Array.from(document.querySelectorAll('.lang-btn'))
+                 .find(el => el.textContent === btnText)
+                 .classList.add('active');
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running'; 
+                }
+            });
+        });
+
+        setLanguage('en');
+    </script>
+</body>
+</html>
