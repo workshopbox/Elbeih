@@ -356,7 +356,7 @@ function setLanguage(lang) {
 
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     // Get button text and activate the right one
-    const btnText = lang === 'ar' ? 'Arabic' : lang.toUpperCase();
+    let btnText = lang === 'ar' ? 'عربي' : lang.toUpperCase();
     Array.from(document.querySelectorAll('.lang-btn'))
          .find(el => el.textContent === btnText)
          .classList.add('active');
