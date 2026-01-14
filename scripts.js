@@ -95,7 +95,8 @@ const translations = {
         history_html: `
             <table class="stats-table">
                 <tr><th>Club</th><th>Role</th><th>Period</th></tr>
-                <tr class="highlight-row"><td>ESK Graz</td><td>Head Coach</td><td>23.04.2017 - 09.02.2018</td></tr>
+                <tr class="highlight-row"><td>SV LUV Graz Wetzelsdorf</td><td>Individual Trainer</td><td>01.01.2026 - Present</td></tr>
+                <tr><td>ESK Graz</td><td>Head Coach</td><td>23.04.2017 - 09.02.2018</td></tr>
                 <tr><td>ESK Graz</td><td>Assistant Coach</td><td>23.04.2017 - 30.06.2020</td></tr>
                 <tr><td>Fk Austria Asv Puch</td><td>Assistant Coach</td><td>15.04.2008 - 30.06.2008</td></tr>
             </table>`,
@@ -204,7 +205,8 @@ const translations = {
         history_html: `
             <table class="stats-table">
                 <tr><th>Verein</th><th>Funktion</th><th>Von - Bis</th></tr>
-                <tr class="highlight-row"><td>ESK Graz</td><td>Trainer</td><td>23.04.2017 - 09.02.2018</td></tr>
+                <tr class="highlight-row"><td>SV LUV Graz Wetzelsdorf</td><td>Individualtrainer</td><td>01.01.2026 - Aktuell</td></tr>
+                <tr><td>ESK Graz</td><td>Trainer</td><td>23.04.2017 - 09.02.2018</td></tr>
                 <tr><td>ESK Graz</td><td>Co-Trainer</td><td>23.04.2017 - 30.06.2020</td></tr>
                 <tr><td>Fk Austria Asv Puch</td><td>Co-Trainer</td><td>15.04.2008 - 30.06.2008</td></tr>
             </table>`,
@@ -313,7 +315,8 @@ const translations = {
         history_html: `
             <table class="stats-table">
                 <tr><th>النادي</th><th>الدور</th><th>الفترة</th></tr>
-                <tr class="highlight-row"><td>ESK Graz</td><td>مدير فني (Head Coach)</td><td>23.04.2017 - 09.02.2018</td></tr>
+                <tr class="highlight-row"><td>SV LUV Graz Wetzelsdorf</td><td>مدرب شخصي</td><td>01.01.2026 - حتى الآن</td></tr>
+                <tr><td>ESK Graz</td><td>مدير فني (Head Coach)</td><td>23.04.2017 - 09.02.2018</td></tr>
                 <tr><td>ESK Graz</td><td>مدرب مساعد</td><td>23.04.2017 - 30.06.2020</td></tr>
                 <tr><td>Fk Austria Asv Puch</td><td>مدرب مساعد</td><td>15.04.2008 - 30.06.2008</td></tr>
             </table>`,
